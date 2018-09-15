@@ -1,0 +1,6 @@
+
+\.idea/
+
+tests/\.ipynb_checkpoints/
+
+wavemeter_evaluation/__pycache__/
