@@ -2,7 +2,6 @@ import numpy as np
 import math
 
 from . import wavemeter_data as wmd
-#import wavemeter_data as wmd
 
 
 def find_nearest(array, value):
@@ -41,10 +40,14 @@ class WavemeterEvaluation:
             Array containing the wavelength data (in nm)
         data_frequency : numpy.ndarray
             Array containing the frequency data (in GHz)
+        n_files : int
+            Number of loaded files
         """
         self._data_time = np.empty(0)
         self._data_wavelength = np.empty(0)
         self._data_frequency = np.empty(0)
+
+        self._n_files = 0
 
     @property
     def data_time(self):
@@ -57,6 +60,10 @@ class WavemeterEvaluation:
     @property
     def data_frequency(self):
         return self._data_frequency
+
+    @property
+    def n_files(self):
+        return self._n_files
 
     def add_data_from_file(self, filename, encoding='utf-8'):
         """ Add data from an lta-file.
@@ -97,8 +104,14 @@ class WavemeterEvaluation:
         self._data_time = np.empty(0)
         self._data_wavelength = np.empty(0)
         self._data_frequency = np.empty(0)
+        self._n_files = 0
 
+    def info(self):
+        """ Prints information about current object.
 
+        """
+        print('Number of loaded files: ' + str(self._n_files))
+        print('Total measurement time: ' + str(self._data_time[-1]) + ' s')
 
     def calculate_statistics(self, kind='frequency', print_output=False):
         """ Calculates statistic of the data:
