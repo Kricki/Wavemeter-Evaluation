@@ -4,3 +4,7 @@
 tests/\.ipynb_checkpoints/
 
 wavemeter_evaluation/__pycache__/
+
+tests/data/
+
+tests/

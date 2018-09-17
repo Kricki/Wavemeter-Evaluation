@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-with open('README.rst') as fp:
+with open('README.md') as fp:
     long_description = fp.read()
 
 CLASSIFIERS = """
@@ -14,7 +14,7 @@ Topic :: Scientific/Engineering
 """
 
 setup(
-    name='time_signal',
+    name='wavemeter_evaluation',
     version='0.1.0',
     author='',
     author_email='euphiment@gmx.de',

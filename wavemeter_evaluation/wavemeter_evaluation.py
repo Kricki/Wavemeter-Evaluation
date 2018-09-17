@@ -58,7 +58,7 @@ class WavemeterEvaluation:
     def data_frequency(self):
         return self._data_frequency
 
-    def add_data_from_file(self, filename):
+    def add_data_from_file(self, filename, encoding='utf-8'):
         """ Add data from an lta-file.
 
         Data will be added to the attributes data_time, data_wavelength, data_frequency.
@@ -68,8 +68,13 @@ class WavemeterEvaluation:
         ----------
         filename : str
             Filename of the data file to be added
+        encoding : str
+            Encoding of the data file, defaults to 'utf-8'
+
         """
-        data = wmd.read_lta_file(filename)
+        data = wmd.read_lta_file(filename=filename, encoding=encoding)
+
+        data = np.delete(data, (np.where(data[:, 1] < 0)), 0)  # remove negative values (correspond to under- or overexposure)
 
         data_time = data[:, 0]/1000  # time in seconds
         data_wavelength = data[:, 1]  # wavelength in nm
@@ -92,6 +97,8 @@ class WavemeterEvaluation:
         self._data_time = np.empty(0)
         self._data_wavelength = np.empty(0)
         self._data_frequency = np.empty(0)
+
+
 
     def calculate_statistics(self, kind='frequency', print_output=False):
         """ Calculates statistic of the data:
