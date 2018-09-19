@@ -110,8 +110,11 @@ class WavemeterEvaluation:
         """ Prints information about current object.
 
         """
-        print('Number of loaded files: ' + str(self._n_files))
-        print('Total measurement time: ' + str(self._data_time[-1]) + ' s')
+        if self._n_files > 0:
+            print('Number of loaded files: ' + str(self._n_files))
+            print('Total measurement time: ' + str(self._data_time[-1]) + ' s')
+        else:
+            print('No files loaded.')
 
     def calculate_statistics(self, kind='frequency', print_output=False):
         """ Calculates statistic of the data:
