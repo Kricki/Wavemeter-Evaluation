@@ -1,6 +1,17 @@
 # Wavemeter-Evaluation
 Tools to evaluate measurement data from a HighFinesse Wavemeter
 
+## Installation
+Download or clone repository and:
+````
+python setup.py install
+````
+Or via pip:
+````
+pip install https://github.com/kricki/Wavemeter-Evaluation/archive/master.zip
+````
+
+
 ## Example
 ````python
 from wavemeter_evaluation import WavemeterEvaluation

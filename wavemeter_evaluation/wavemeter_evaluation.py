@@ -97,6 +97,8 @@ class WavemeterEvaluation:
         self._data_wavelength = np.append(self._data_wavelength, data_wavelength)
         self._data_frequency = np.append(self._data_frequency, data_frequency)
 
+        self._n_files += 1
+
     def clear_data(self):
         """ Clears the data.
 
