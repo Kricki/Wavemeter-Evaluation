@@ -4,14 +4,8 @@ Tools to evaluate measurement data from a HighFinesse Wavemeter
 ## Installation
 Download or clone repository and:
 ````
-python setup.py install
+pip install wavemeter_evaluation
 ````
-Or via pip:
-````
-pip install https://github.com/kricki/Wavemeter-Evaluation/archive/master.zip
-````
-
-
 ## Example
 ````python
 from wavemeter_evaluation import WavemeterEvaluation
@@ -19,7 +13,7 @@ from wavemeter_evaluation import WavemeterEvaluation
 wme = WavemeterEvaluation()
 wme.add_data_from_file('datafile.lta')
 
-wme.calculate_statistics(kind='frequency', print_output=True)
+wme.calculate_statistics(mode='frequency', print_output=True)
 ````
 Output (Example):
 ````

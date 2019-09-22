@@ -118,14 +118,14 @@ class WavemeterEvaluation:
         else:
             print('No files loaded.')
 
-    def calculate_statistics(self, kind='frequency', print_output=False):
+    def calculate_statistics(self, mode='frequency', print_output=False):
         """ Calculates statistic of the data:
 
         Mean, Standard deviation, Minimum value, Maximum value, Difference between miniimum and maximum value
 
         Parameters
         ----------
-        kind : str
+        mode : str
             Identifier to choose the data to process. Can be "wavelength" or "frequency".
         print_output : bool
             If True, result will be printed to the console. Defaults to False.
@@ -136,16 +136,16 @@ class WavemeterEvaluation:
             List with the statistcs results.
             [mean, standard deviation, minimum value, maximum value, difference between min and max]
         """
-        if kind == 'frequency':
+        if mode == 'frequency':
             data = np.copy(self._data_frequency)
             text = 'Frequency statistics:'
             unit = 'GHz'
-        elif kind == 'wavelength':
+        elif mode == 'wavelength':
             data = np.copy(self._data_wavelength)
             text = 'Wavelength statistics:'
             unit = 'nm'
         else:
-            raise(ValueError('Invalid parameter for "kind"'))
+            raise(ValueError('Invalid parameter for "mode"'))
 
         mean = np.mean(data)
         stddev = np.std(data)
@@ -165,7 +165,7 @@ class WavemeterEvaluation:
 
         return [mean, stddev, min_value, max_value, diff_minmax]
 
-    def calculate_stability(self, time_delta, kind='frequency'):
+    def calculate_stability(self, time_delta, mode='frequency'):
         """ Calculate stability of the measured wavelength
 
         Returns an array containing the differences between measurement values (wavelength of frequency) at a temporal
@@ -175,7 +175,7 @@ class WavemeterEvaluation:
         ----------
         time_delta : float
             Difference between measurement values
-        kind : str
+        mode : str
             Identifier to choose the data to process. Can be "wavelength" or "frequency".
         Returns
         -------
@@ -183,12 +183,12 @@ class WavemeterEvaluation:
             Array containing the differences between measurement values
 
         """
-        if kind == 'frequency':
+        if mode == 'frequency':
             data = np.copy(self._data_frequency)
-        elif kind == 'wavelength':
+        elif mode == 'wavelength':
             data = np.copy(self._data_wavelength)
         else:
-            raise(ValueError('Invalid parameter for "kind"'))
+            raise(ValueError('Invalid parameter for "mode"'))
 
         diff = []
         for time, val in zip(self._data_time, data):
